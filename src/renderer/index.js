@@ -9,7 +9,7 @@ class Renderer {
             settings: {
                 frequency: {
                     name: 'frequency',
-                    text: '频率',
+                    text: '频率（50毫秒）',
                     value: 1,
                 },
                 stops: {
