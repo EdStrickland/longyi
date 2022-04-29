@@ -35,11 +35,11 @@ class App {
             return;
         };
         const image = new Image();
-        const latency = 1000;
+        const interval = 1000;
         image.src = URL.createObjectURL(imageFile);
         this._images.push({
             image: image,
-            latency: latency
+            interval: interval
         });
         this._prepareSettings();
     }
@@ -103,7 +103,7 @@ class App {
 
     updateRange(event) {
         document.querySelector(`#${event.currentTarget.id}-value`).innerText = event.currentTarget.value;
-        this._images[event.currentTarget.name].latency = Number (event.currentTarget.value);
+        this._images[event.currentTarget.name].interval = Number (event.currentTarget.value);
     }
 
     removeImage(event) {
@@ -128,7 +128,7 @@ class App {
     _prepareSettings() {
         document.querySelector('#settings').innerHTML = '';
         this._images.forEach((imageData, index) => {
-            this._insertSettings(index, imageData.image.src, imageData.latency);
+            this._insertSettings(index, imageData.image.src, imageData.interval);
         });
     }
 
@@ -195,7 +195,7 @@ class Renderer {
             settings: {
                 frequency: {
                     name: 'frequency',
-                    text: '频率',
+                    text: '频率（50毫秒）',
                     value: 1,
                 },
                 stops: {
