@@ -1,0 +1,63 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>龙一表情包生成器</title>
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <style type="text/css">
+    	canvas {
+    		width: 300px;
+    		height: 184px;
+    	}
+    	
+    	#can {
+    	}
+
+    	#wrapper {
+    		position: relative;
+    		width: 300px;
+    		height: 184px;
+    	}
+
+    	#msg {
+    		position: absolute;
+    		top:0;
+    		width: 300px;
+    		height: 184px;
+    		line-height: 184px;
+    		text-align: center;
+    		font-weight: bold;
+    		color: white;
+    		text-shadow: 0 0 5px #000;
+    		background-color: rgba(0,0,0,0.5);
+    	}
+    </style>
+<head>
+<body>
+	<span>进度</span>
+	<div id="wrapper">
+    	<canvas id="can" width="300" height="184"></canvas>
+    	<div id="msg"></div>
+	</div>
+	<br>
+	<span>结果</span>
+    <img id="target" src=""><br>
+	<br>
+    <span>特效</span> <select id="effects" onchange="selectEffect()"></select><br>
+	<br>
+    <span>头像</span> <input type="file" id="avatar" onchange="uploadAvatar()"/><br>
+	<br>
+    <span>描述</span> <input type="file" id="image"/><button onclick="uploadImage()">添加</button><br>
+	<br>
+	<span>设置帧时间(1000 - 10000毫秒)</span>
+	<div id="settings">
+
+	</div>
+	<br>
+    <button onclick="render()">渲染</button>
+    <button onclick="clearData()">清空</button>
+    <script src="assets/js/gif.js"></script>
+    <script src="assets/js/gif.worker.js"></script>
+    <script src="dist/bundle.js"></script>
+</body>
+</html>

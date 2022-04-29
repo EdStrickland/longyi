@@ -1,0 +1,10 @@
+{
+  "name": "longyi",
+  "version": "0.0.1",
+  "description": "long yi meme generator",
+  "author": "EdStrickland",
+  "license": "ISC",
+  "devDependencies": {
+    "browserify": "^17.0.0"
+  }
+}
