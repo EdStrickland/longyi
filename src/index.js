@@ -4,6 +4,7 @@ class App {
     _effects = [{
         name: '',
         text: '',
+        settings: []
     }];
     _selectedEffect = null;
     _avatar = null;
@@ -44,6 +45,39 @@ class App {
 
     selectEffect() {
         this._selectedEffect = document.querySelector('#effects').value;
+        document.querySelector('#effectSettings').innerHTML = '';
+        this._effects.filter((effect) => effect.name === this._selectedEffect).forEach((effect) => {
+            Object.values(effect.settings).forEach((setting) => {
+                const div = document.createElement('div');
+                const range = document.createElement('input');
+                range.id = `setting-${setting.name}`;
+                range.name = setting.name;
+                range.type = 'range';
+                range.min = 0;
+                range.max = 40;
+                range.step = 1;
+                range.oninput = this.updateSettings.bind(this);
+                const labelText = document.createElement('span');
+                labelText.id = `${range.id}-label`;
+                labelText.innerText = setting.text;
+                const valueText = document.createElement('span');
+                valueText.id = `${range.id}-value`;
+                valueText.innerText = setting.value;
+                const br = document.createElement('br');
+                div.appendChild(labelText);
+                div.appendChild(range);
+                div.appendChild(valueText);
+                div.appendChild(br);
+                document.querySelector('#effectSettings').appendChild(div);
+            });
+        });
+    }
+
+    updateSettings(event) {
+        document.querySelector(`#${event.currentTarget.id}-value`).innerText = event.currentTarget.value;
+        this._effects.filter((effect) => effect.name === this._selectedEffect).forEach((effect) => {
+            effect.settings[event.currentTarget.name].value = event.currentTarget.value;
+        });
     }
 
     render() {
@@ -58,6 +92,7 @@ class App {
         this._avatar = null;
         this._images = [];
         document.querySelector('#settings').innerHTML = '';
+        document.querySelector('#effectSettings').innerHTML = '';
         document.querySelector('#effects').value = '';
         document.querySelector('#avatar').value = null;
         document.querySelector('#image').value = null;
@@ -93,7 +128,7 @@ class App {
         document.querySelector('#settings').innerHTML = '';
         this._images.forEach((imageData, index) => {
             this._insertSettings(index, imageData.image.src, imageData.latency);
-        })
+        });
     }
 
     _insertSettings(pos, imageSrc, value) {

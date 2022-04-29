@@ -2,6 +2,7 @@
 <head>
     <meta charset="utf-8">
     <title>龙一表情包生成器</title>
+    <base href="/longyi">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <style type="text/css">
 		body {
@@ -9,7 +10,7 @@
 		}
     	canvas {
     		width: 300px;
-    		height: 184px;
+    		height: 300px;
     	}
     	
     	#can {
@@ -18,15 +19,15 @@
     	#wrapper {
     		position: relative;
     		width: 300px;
-    		height: 184px;
+    		height: 300px;
     	}
 
     	#msg {
     		position: absolute;
     		top:0;
     		width: 300px;
-    		height: 184px;
-    		line-height: 184px;
+    		height: 300px;
+    		line-height: 300px;
     		text-align: center;
     		font-weight: bold;
     		color: white;
@@ -36,16 +37,21 @@
     </style>
 <head>
 <body>
-	<span>进度</span>
+	<span>进度</span><br>
 	<div id="wrapper">
-    	<canvas id="can" width="300" height="184"></canvas>
+    	<canvas id="can" width="300" height="300"></canvas>
     	<div id="msg"></div>
 	</div>
 	<br>
-	<span>结果</span>
+	<span>结果</span><br>
     <img id="target" src=""><br>
 	<br>
     <span>特效</span> <select id="effects" onchange="selectEffect()"></select><br>
+	<br>
+	<span>特效设置</span>
+	<div id="effectSettings">
+
+	</div>
 	<br>
     <span>头像</span> <input type="file" id="avatar" onchange="uploadAvatar()"/><br>
 	<br>
